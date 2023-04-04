@@ -18,7 +18,13 @@ export default function Logged({ image }: LoggedProps) {
         Sign Out
       </button>
       <Link href="/dashboard">
-        <Image width={64} height={64} src={image} alt="" />
+        <Image
+          width={64}
+          height={64}
+          src={image}
+          alt=""
+          className="rounded-full"
+        />
       </Link>
     </li>
   );

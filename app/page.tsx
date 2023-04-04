@@ -5,6 +5,7 @@ import AddPost from "./components/AddPost";
 import { useQuery } from "@tanstack/react-query";
 import Post from "./components/Post";
 import { PostType } from "./types/Post";
+import Skeleton from "./components/Skeleton";
 
 const getAllPosts = async () => {
   const response = await axios.get("/api/posts/getPosts");
@@ -21,7 +22,7 @@ export default function Home() {
       <>
         <AddPost />
         {error && <h1>{error.toString()}</h1>}
-        {isLoading && <h1>Loading...</h1>}
+        {isLoading && <Skeleton />}
         {data?.map((post) => (
           <Post
             key={post.id}

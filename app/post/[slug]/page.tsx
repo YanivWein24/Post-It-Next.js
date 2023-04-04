@@ -7,6 +7,7 @@ import { formatDistance } from "date-fns";
 import AddComment from "@/app/components/AddComment";
 import Post from "@/app/components/Post";
 import { PostType } from "@/app/types/Post";
+import Skeleton from "@/app/components/Skeleton";
 
 interface URL {
   // we get this from the browser
@@ -24,7 +25,8 @@ const fetchDetails = async (slug: string) => {
 export default function PostDetail(url: URL) {
   const { data, isLoading, isError } = useQuery<PostType>(
     ["post-details"],
-    () => fetchDetails(url.params.slug));
+    () => fetchDetails(url.params.slug)
+  );
 
   const relativeTimeString = (dateInString: string) => {
     return formatDistance(Date.parse(dateInString), new Date(), {
@@ -32,11 +34,11 @@ export default function PostDetail(url: URL) {
     });
   };
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Skeleton />;
   if (isError) return "Error - can't get post";
 
   return (
-    <div>
+    <div className="animate-fade-in">
       <Post
         id={data?.id}
         name={data?.user.name}

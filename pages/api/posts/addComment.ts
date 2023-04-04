@@ -13,7 +13,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions);
-  if (!session) return res.status(401).json({ message: "Please sign in" });
+  if (!session)
+    return res.status(401).json({ message: "Please sign in to comment" });
   if (!req.body.data.title)
     return res.status(400).json({ message: "Missing comment text" });
 

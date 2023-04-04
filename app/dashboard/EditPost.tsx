@@ -37,7 +37,7 @@ export default function EditPost({
 
   return (
     <>
-      <div className="bg-white my-8 p-8 rounded-lg">
+      <div className="bg-white my-8 p-8 rounded-lg animate-fade-in">
         <div className="flex items-center gap-2">
           <Image width={32} height={32} src={avatar} alt="avatar" />
           <h3 className="font-bold text-grey-700">{name}</h3>

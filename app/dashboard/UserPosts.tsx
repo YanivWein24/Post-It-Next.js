@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { UserPost } from "../types/UserPost";
 import EditPost from "./EditPost";
+import Skeleton from "../components/Skeleton";
 
 const fetchUserPosts = async () => {
   const response = await axios.get("/api/posts/getUserPosts");
@@ -15,7 +16,7 @@ export default function UserPosts() {
     ["user-posts"],
     fetchUserPosts
   );
-  if (isLoading) return <h1>Loading posts...</h1>;
+  if (isLoading) return <Skeleton />;
   return (
     <div>
       {data?.posts?.map((post) => (
