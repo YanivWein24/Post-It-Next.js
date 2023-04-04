@@ -7,7 +7,6 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     try {
-      console.log(req.query);
       const data = await prisma.post.findUnique({
         where: {
           // @ts-expect-error
@@ -25,7 +24,6 @@ export default async function handler(
           },
         },
       });
-      console.log(data);
       return res.status(200).json(data);
     } catch (err) {
       res.status(403).json({ err: "Error has occured while making a post" });

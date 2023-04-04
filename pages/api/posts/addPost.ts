@@ -31,7 +31,6 @@ export default async function handler(
           userId: prismaUser?.id ?? "",
         },
       });
-      console.log(newPost);
       res.status(200).json(newPost);
     } catch (error) {
       res.status(500).json({ message: "Server error" });

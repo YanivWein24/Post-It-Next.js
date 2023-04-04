@@ -1,12 +1,13 @@
 "use client";
 
+import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 interface ToggleProps {
   postId: string;
-  setIsModalOpen: (toggle: boolean) => void;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function DeleteModal({ postId, setIsModalOpen }: ToggleProps) {
@@ -17,7 +18,7 @@ export default function DeleteModal({ postId, setIsModalOpen }: ToggleProps) {
     async () => await axios.delete("/api/posts/deletePost", { data: postId }),
     {
       onError: (error) => {
-        console.log(error);
+        console.log(error); /* eslint-disable-line */
         toast.error("Error - post delete failed", { id: deleteToastId });
       },
       onSuccess: () => {
@@ -37,8 +38,8 @@ export default function DeleteModal({ postId, setIsModalOpen }: ToggleProps) {
 
   return (
     <div
-      onClick={(e) => {
-        e.stopPropagation();
+      onClick={(event) => {
+        event.stopPropagation();
         setIsModalOpen(false);
       }}
       className="fixed bg-black/50 w-full h-full z-20 left-0 top-0 animate-fade-in"

@@ -24,11 +24,7 @@ const fetchDetails = async (slug: string) => {
 export default function PostDetail(url: URL) {
   const { data, isLoading, isError } = useQuery<PostType>(
     ["post-details"],
-    () => fetchDetails(url.params.slug),
-    {
-      staleTime: 1000 * 60,
-    }
-  );
+    () => fetchDetails(url.params.slug));
 
   const relativeTimeString = (dateInString: string) => {
     return formatDistance(Date.parse(dateInString), new Date(), {

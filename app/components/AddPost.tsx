@@ -19,8 +19,7 @@ export default function AddPost() {
           // this way is shorter than creating an interface for error
           toast.error(error?.response?.data.message, { id: toastPostID });
       },
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: () => {
         setTitle("");
         toast.success("Created new post 🔥", { id: toastPostID });
         queryClient.invalidateQueries(["all-posts"]); // invalidate the query cache and refetch the data

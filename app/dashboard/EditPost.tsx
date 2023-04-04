@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { formatDistance } from "date-fns";
 import DeleteModal from "./DeleteModal";
 
@@ -46,9 +47,11 @@ export default function EditPost({
           <p className="break-all">{title}</p>
         </div>
         <div className="flex items-center gap-4">
-          <p className="text-sm font-bold text-gray-700">
-            {comments?.length} Comments
-          </p>
+          <Link href={`/post/${postId}`}>
+            <p className="text-sm font-bold text-gray-700">
+              {comments?.length} Comments
+            </p>
+          </Link>
           <button
             className="text-sm font-bold text-red-500"
             onClick={() => setIsModalOpen(true)}

@@ -9,7 +9,6 @@ export default async function handler(
     try {
       const data = await prisma.post.findMany({
         include: {
-          // include the user data in the response
           user: true,
           comments: true,
         },

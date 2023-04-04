@@ -24,7 +24,7 @@ export default function AddComment({ postId }: { postId: string }) {
           // this way is shorter than creating an interface for error
           toast.error(error?.response?.data.message, { id: toastPostID });
       },
-      onSuccess: (data) => {
+      onSuccess: () => {
         setTitle("");
         toast.success("Uploaded Successfully 🔥", { id: toastPostID });
         queryClient.invalidateQueries(["post-details"]);
