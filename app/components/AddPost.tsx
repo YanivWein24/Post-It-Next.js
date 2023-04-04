@@ -12,7 +12,7 @@ export default function AddPost() {
   let toastPostID = "this string must not be empty";
 
   const { mutate, isLoading } = useMutation(
-    async (title: string) => await axios.post("/api/posts/addPost", { title }),
+    async () => await axios.post("/api/posts/addPost", { title }),
     {
       onError: (error) => {
         error instanceof AxiosError &&
@@ -32,7 +32,7 @@ export default function AddPost() {
   const submitPost = async (event: FormEvent) => {
     toastPostID = toast.loading("Uploading Post", { id: toastPostID });
     event.preventDefault();
-    mutate(title);
+    mutate();
   };
 
   return (

@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+import { formatDistance } from "date-fns";
 import DeleteModal from "./DeleteModal";
 
 interface EditPostProps {
@@ -9,6 +10,7 @@ interface EditPostProps {
   avatar: string;
   name: string;
   title: string;
+  createdAt: string;
   comments?: {
     id: string;
     postId: string;
@@ -21,9 +23,16 @@ export default function EditPost({
   avatar,
   name,
   title,
+  createdAt,
   comments,
 }: EditPostProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const relativeTimeString = (dateInString: string) => {
+    return formatDistance(Date.parse(dateInString), new Date(), {
+      addSuffix: true,
+    });
+  };
 
   return (
     <>
@@ -31,6 +40,7 @@ export default function EditPost({
         <div className="flex items-center gap-2">
           <Image width={32} height={32} src={avatar} alt="avatar" />
           <h3 className="font-bold text-grey-700">{name}</h3>
+          <h2 className="text-sm ml-auto">{relativeTimeString(createdAt)}</h2>
         </div>
         <div className="my-8">
           <p className="break-all">{title}</p>

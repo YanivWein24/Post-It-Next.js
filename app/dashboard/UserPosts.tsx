@@ -25,6 +25,7 @@ export default function UserPosts() {
           avatar={data.image}
           name={data.name}
           title={post.title}
+          createdAt={post.createdAt}
           comments={post.comments}
         />
       ))}
