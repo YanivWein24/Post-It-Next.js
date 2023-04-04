@@ -27,6 +27,7 @@ export default async function handler(
 
     try {
       const result = await prisma.comment.create({
+        // @ts-expect-error
         data: {
           message: title,
           userId: prismaUser?.id,
