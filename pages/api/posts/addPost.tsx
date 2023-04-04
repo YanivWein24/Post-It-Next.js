@@ -13,6 +13,7 @@ export default async function handler(
       return res.status(401).json({ message: "Please sign in to make a post" });
 
     const prismaUser = await prisma.user.findUnique({
+      // @ts-expect-error
       where: { email: session?.user?.email },
     });
 
@@ -27,7 +28,7 @@ export default async function handler(
       const newPost = await prisma.post.create({
         data: {
           title,
-          userId: prismaUser.id,
+          userId: prismaUser?.id ?? "",
         },
       });
       console.log(newPost);

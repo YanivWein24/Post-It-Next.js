@@ -1,5 +1,5 @@
 import "./globals.css";
-import Nav from "./auth/Nav";
+import Nav from "./Nav";
 import { Roboto } from "@next/font/google";
 import QueryWrapper from "./QueryWrapper";
 
