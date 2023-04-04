@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
 export default function AddPost() {
   const [title, setTitle] = useState("");
+  const queryClient = useQueryClient();
 
   let toastPostID = "this string must not be empty";
 
@@ -22,6 +23,8 @@ export default function AddPost() {
         console.log(data);
         setTitle("");
         toast.success("Created new post 🔥", { id: toastPostID });
+        queryClient.invalidateQueries(["all-posts"]); // invalidate the query cache and refetch the data
+        queryClient.invalidateQueries(["user-posts"]);
       },
     }
   );

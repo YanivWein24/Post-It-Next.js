@@ -10,7 +10,6 @@ export default async function handler(
       const data = await prisma.post.findMany({
         include: {
           // include the user data in the response
-          // @ts-expect-error
           user: true,
           comments: true,
         },
@@ -18,7 +17,6 @@ export default async function handler(
           createdAt: "desc",
         },
       });
-      console.log(data);
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ message: "Server error" });

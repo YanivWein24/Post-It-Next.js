@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { UserPost } from "../types/UserPost";
+import EditPost from "./EditPost";
 
 const fetchUserPosts = async () => {
   const response = await axios.get("/api/posts/getUserPosts");
@@ -10,10 +11,23 @@ const fetchUserPosts = async () => {
 };
 
 export default function UserPosts() {
-  const { data, isLoading } = useQuery<UserPost[]>(
+  const { data, isLoading } = useQuery<UserPost>(
     ["user-posts"],
     fetchUserPosts
   );
   if (isLoading) return <h1>Loading posts...</h1>;
-  return <div>posts</div>;
+  return (
+    <div>
+      {data?.posts?.map((post) => (
+        <EditPost
+          key={post.id}
+          postId={post.id}
+          avatar={data.image}
+          name={data.name}
+          title={post.title}
+          comments={post.comments}
+        />
+      ))}
+    </div>
+  );
 }

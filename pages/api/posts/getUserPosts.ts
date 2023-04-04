@@ -22,13 +22,11 @@ export default async function handler(
               createdAt: "desc",
             },
             include: {
-              // @ts-expect-error
               comments: true,
             },
           },
         },
       });
-      console.log(userPosts);
       res.status(200).json(userPosts);
     } catch (error) {
       res.status(500).json({ message: "Server error" });
