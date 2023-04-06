@@ -43,7 +43,7 @@ export default function AddPost() {
           value={title}
           placeholder="What's on your mind?"
           className="resize-none p-4 text-lg rounded-md my-2 bg-gray-200"
-          rows={title.length > 150 ? 6 : 3}
+          rows={4}
         />
       </div>
       <div className="flex items-center justify-between gap-2">

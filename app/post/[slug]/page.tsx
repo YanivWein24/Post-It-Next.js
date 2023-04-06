@@ -2,12 +2,14 @@
 
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import axios from "axios";
 import { formatDistance } from "date-fns";
 import AddComment from "@/app/components/AddComment";
 import Post from "@/app/components/Post";
 import { PostType } from "@/app/types/Post";
 import Skeleton from "@/app/components/Skeleton";
+import ArrowBack from "../../images/arrowBack.svg";
 
 interface URL {
   // we get this from the browser
@@ -38,7 +40,16 @@ export default function PostDetail(url: URL) {
   if (isError) return "Error - can't get post";
 
   return (
-    <div className="animate-fade-in">
+    <div className="relative animate-fade-in">
+      <Link href="/" className="flex align-center gap-2 absolute left-0 -top-12 hover:-left-4 duration-150">
+        <Image
+          src={ArrowBack}
+          alt=""
+          width={32}
+          height={32}
+          className=""
+        /> <p className="text-lg">Back</p>
+      </Link>
       <Post
         id={data?.id}
         name={data?.user.name}

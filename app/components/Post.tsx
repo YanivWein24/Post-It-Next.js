@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistance } from "date-fns";
-import Heart from "../images/heart.svg";
 
 interface PostProps {
   id: string;
@@ -50,8 +49,7 @@ export default function Post({
         <p className="break-all">{postTitle}</p>
       </div>
       <div className="flex gap-4 items-center">
-        <Image className="" width={32} height={32} src={Heart} alt="heart" />
-        <Link href={`/post/${id}`}>
+        <Link href={`/post/${id}`} onClick={() => window.scroll({ top: 0 })}>
           <p className="text-sm font-bold text-gray-700">
             {comments?.length} Comment
           </p>
